@@ -38,6 +38,7 @@ class App extends Component {
                         return <Char
                             char={t}
                             click={() => this.deletePersonHandler(index)}
+                            key={index}
                         >
 
                         </Char>
