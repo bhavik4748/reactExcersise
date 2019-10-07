@@ -14,11 +14,39 @@ class App extends Component {
         let t = [...this.state.tState];
         t[0].textLen = event.target.value.length;
         t[0].text = event.target.value;
-        this.setState({ tStage: t });
-        // console.log(t);
+        this.setState({ tState: t });
+
+    }
+
+    deletePersonHandler = (index) => {
+        // console.log(index);
+        const t = [...this.state.tState];
+        let t1 = t[0].text.split('');
+        t1.splice(index, 1);
+        t[0].text = t1.join('');
+        t[0].textLen = t[0].text.length;
+        this.setState({ tState: t });
     }
 
     render() {
+        let charArray = null;
+        //  let temp = null;
+        charArray = (
+            <div>
+                {
+                    this.state.tState[0].text.split('').map((t, index) => {
+                        return <Char
+                            char={t}
+                            click={() => this.deletePersonHandler(index)}
+                        >
+
+                        </Char>
+                    })
+                }
+            </div>
+        )
+
+
         return (
             <div className="App" >
                 <h2>React Excercise</h2>
@@ -34,7 +62,7 @@ class App extends Component {
 
                 </Validation>
 
-                <Char></Char>
+                {charArray}
 
             </div>
         );
